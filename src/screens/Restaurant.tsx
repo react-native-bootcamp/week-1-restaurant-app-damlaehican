@@ -18,7 +18,7 @@ const Restaurant = () => {
 	})
 	return (
 		<View style={{
-			flex: 1,
+			flex: 1
 		}}>
 			{
 				request ? (
@@ -32,7 +32,7 @@ const Restaurant = () => {
 					}>
 					</FlatList>
 				) :
-					<View style={{flex: 1,justifyContent: 'center', alignItems: 'center'}}>
+					<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 						<ActivityIndicator color='red'></ActivityIndicator>
 					</View>
 			}

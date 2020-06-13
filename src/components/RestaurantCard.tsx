@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Entypo } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import FullStars from './FullStars'
+import EmptyStars from './EmptyStars'
 
 interface RestProps {
   name: string,
@@ -21,7 +22,7 @@ const RestaurantCard = (props: RestProps) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={{ uri: props.image }}
-        style={{ width: '100%', height: Dimensions.get('window').height * 0.33 }}
+        style={styles.imageBackground}
         imageStyle={{ borderTopLeftRadius: 10, borderTopRightRadius: 10, borderWidth: 0.5 }}>
         <View style={{
           height: Dimensions.get('window').height * 0.33,
@@ -58,16 +59,7 @@ const RestaurantCard = (props: RestProps) => {
           </LinearGradient>
         </View>
       </ImageBackground>
-      <View style={{
-        flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', shadowOffset: {
-          width: 0,
-          height: 10,
-        },
-        shadowOpacity: 0.40,
-        shadowRadius: 10.32,
-        elevation: 14,
-        borderBottomLeftRadius: 10, borderBottomRightRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.2)'
-      }}>
+      <View style={styles.bottom}>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           <Entypo name="heart" size={30} color='#d92027' />
           <Text style={{ color: '', fontSize: 20, margin: 4, fontWeight: 'bold' }}>{props.likes}</Text>
@@ -75,21 +67,9 @@ const RestaurantCard = (props: RestProps) => {
         <View style={{ flexDirection: 'row' }}>
           {
             props.isPopular ?
-              <View style={{ flexDirection: 'row' }}>
-                <AntDesign name="star" size={24} color='#455a64' style={{ fontWeight: 'bold' }} />
-                <AntDesign name="star" size={24} color='#455a64' />
-                <AntDesign name="star" size={24} color='#455a64' />
-                <AntDesign name="star" size={24} color='#455a64' />
-                <AntDesign name="star" size={24} color='#455a64' />
-              </View>
+             <FullStars></FullStars>
               :
-              <View style={{ flexDirection: 'row' }}>
-                <AntDesign name="staro" size={24} color='#455a64' />
-                <AntDesign name="staro" size={24} color='#455a64' />
-                <AntDesign name="staro" size={24} color='#455a64' />
-                <AntDesign name="staro" size={24} color='#455a64' />
-                <AntDesign name="staro" size={24} color='#455a64' />
-              </View>
+              <EmptyStars></EmptyStars>
           }
         </View>
 
@@ -107,6 +87,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.40,
     shadowRadius: 10.32,
     elevation: 14,
+  },
+  imageBackground: {
+    width: '100%',
+    height: Dimensions.get('window').height * 0.33
+  },
+  bottom: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.40,
+    shadowRadius: 10.32,
+    elevation: 14,
+    borderBottomLeftRadius: 10, borderBottomRightRadius: 10, backgroundColor: 'rgba(0, 0, 0, 0.2)'
   }
 
 })
